@@ -20,6 +20,13 @@ las urls disponibles son:
 /clientes/editar/* (en * se ingresa el id del cliente a editar) POST
 /estadistica (Resumen general de la data actual)
 ```
+en /clientes se le pueden agregar filtros:
+
+?edad_min=  (edad minima) \
+?edad_max   (edad maxima) \
+?satisfaccion= (nivel de satisfaccion 0 al 5) \
+?genero= (genero M o F) \
+?activo= (activo 1 Inactivo 0)
 
 para iniciar el servidor es:
 
