@@ -1,0 +1,13 @@
+{% extends "home.html" %}
+
+{% block content  %}
+<div class="container mt-5">
+  <h2>Agregar Cliente</h2>
+  <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Guardar</button>
+      <a href="{% url 'listar_clientes' %}" class="btn btn-secondary">Volver</a>
+  </form>
+</div>
+{% endblock  %}

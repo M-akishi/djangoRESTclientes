@@ -1,0 +1,66 @@
+{% extends "home.html" %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2>Lista de Clientes</h2>
+
+  <a href="{% url 'agregar_cliente' %}" class="btn btn-primary">Agregar Cliente</a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Cliente id</th>
+        <th scope="col">Edad</th>
+        <th scope="col">Saldo</th>
+        <th scope="col">Genero</th>
+        <th scope="col">Activo</th>
+        <th scope="col">Nivel de satisfaccion</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for cliente in page_obj %}
+        <tr>
+          <td>{{ cliente.Cliente_id }}</td>
+          <td>{{ cliente.Edad }}</td>
+          <td>{{ cliente.Saldo }}</td>
+          <td>{{ cliente.Genero }}</td>
+          <td>{{ cliente.Activo }}</td>
+          <td>{{ cliente.Nivel_de_Satisfaccion }}</td>
+          <td>
+            <a href="{% url 'editar_cliente' cliente.Cliente_id %}" class="btn btn-info btn-sm">Editar</a>
+
+            <form action="{% url 'eliminar_cliente' cliente.Cliente_id %}" method="POST" style="display:inline;">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- Paginación -->
+  <nav>
+    <ul class="pagination">
+      {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+        </li>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+          <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+        </li>
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+
+</div>
+{% endblock %}
