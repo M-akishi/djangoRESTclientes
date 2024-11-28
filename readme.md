@@ -25,7 +25,7 @@ en /clientes se le pueden agregar filtros:
 ?edad_min=  (edad minima) \
 ?edad_max   (edad maxima) \
 ?satisfaccion= (nivel de satisfaccion 0 al 5) \
-?genero= (genero M o F) \
+?genero= (genero M o F (N para No informado)) \
 ?activo= (activo 1 Inactivo 0)
 
 para iniciar el servidor es:
